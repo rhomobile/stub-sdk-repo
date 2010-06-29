@@ -1,13 +1,17 @@
-namespace :device do
-  namespace :bb do
+$start = pwd
+
+namespace "device" do
+  namespace "bb" do
     task :production do
-      chdir File.dirname(__FILE__)
-      mkdir_p "deploy/bb/target/web"
-      File.open("deploy/bb/target/web/blah.txt", "w" ) { |f| f.write "BLAH" }
+      mkdir_p 'deploy/bb/target/web'
+      chdir 'deploy/bb/target/web'
+      File.open("success.txt","w") { |f| f.write "success" }
+      File.open("file2.txt","w") { |f| f.write "file2" }
       puts "SOME LOG INFO"
       puts "MORE LOG INFO"
       puts "THIS IS BB"
-    end
+      chdir $start
+    end    
   end
-  
+    
 end
