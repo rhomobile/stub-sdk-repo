@@ -3,6 +3,8 @@ $start = pwd
 namespace "device" do
   namespace "bb" do
     task :production do
+      puts "PWD: #{pwd}"
+      mkdir_p 'bin'
       mkdir_p 'deploy/bb/target/web'
       chdir 'deploy/bb/target/web'
       File.open("success.txt","w") { |f| f.write "success" }
