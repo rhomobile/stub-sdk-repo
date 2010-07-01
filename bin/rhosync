@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+include FileUtils
+
+def write(file)
+  File.open(file,'w') {|f| f.puts "'#{file}'"}
+end
+
+case ARGV[0]
+when 'app'
+  [ 'config.ru',
+    'application.rb',
+    'settings/settings.yml',
+    'settings/license.key',
+    'Rakefile',
+    'spec/spec_helper.rb'
+  ].each do |template| 
+    file = File.join(ARGV[1],template)
+    mkdir_p File.join(ARGV[1],File.dirname(template))
+    touch file
+    write(file)
+  end
+when 'source'
+  [ "sources/#{ARGV[1]}.rb",
+    "spec/sources/#{ARGV[1]}_spec.rb"
+  ].each do |template|
+    file = File.join(template)
+    mkdir_p File.join(File.dirname(template))
+    touch file
+    write(file)
+  end
+end
