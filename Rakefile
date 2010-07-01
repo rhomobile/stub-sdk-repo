@@ -29,3 +29,8 @@ namespace "device" do
      end    
    end
 end
+
+task :fail do
+  mkdir_p 'bin'
+  puts "FAIL"
+end
